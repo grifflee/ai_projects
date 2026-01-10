@@ -5,6 +5,11 @@
 #taking steps DOWNHILL to calibrate the best weights
 
 # basic concepts
+
+    # Scalar - single number (no direction, just magnitude)
+    # Vector - ordered list of scalars (think: row or column of numbers)
+    # Matrix - grid of numbers w/ rows & columns (list of vectors stacked)
+
     # features (X); facts about the object
         # feature 1: mileage of a car (number)
         # feature 2: number of scratches on a car (number)
@@ -112,13 +117,25 @@ class LinearRegressionScratch:
         # predictions = guess, y = the actual, error = the difference
         errors = predictions - y
         
+        # calculates the slope (gradient) for every single weight simultaneously
+        # X.T transposes the feature matrix (flips X with features)
+        # np.dot( ) performs the blame calculation by multiplying feature * error and then summing
+        # (1/m) averages by dividing by m
+        # dw = a list of slopes one for each feature
         dw = (1 / m) * np.dot(X.T, errors)
         
+
+        #calculates the slope (gradient) for bias
+        # bias is just a constant single number
+        # sum all the errors to find out if on average we are guessing too high or low
         db = (1 / m) * np.sum(errors)
         
+        #returns the list of weight slopes, and single bias slope 
         return dw, db
-    
+
+    #training loop - where learning takes place by implementing gradients, costs, and normalized data
     def fit(self, X, y):
+        # convert the input data into arrays so that we can do matrix multiplication which deosnt work on normal python lists
         #store the x and y data
         #X are the input features
         X = np.array(X)
@@ -126,6 +143,7 @@ class LinearRegressionScratch:
         y = np.array(y)
         
         # create the normalized features by running the previous normalize function
+        # fit = True means its training data
         X_normalized = self._normalize_features(X, fit=True)
         
         #get the number of features (columns) by specifying [1]
@@ -143,8 +161,8 @@ class LinearRegressionScratch:
 
             # inside the learning loop the direction to move has to be figured out
             # pass in current weights and bias to the _compute_gradients function
-            # dw = gradient (slope) for weights, calculated by multiplying features by errors
-            # db = gradient (slope) for bias
+            # dw = a vector of gradients (slopes) for weights, calculated by multiplying features by errors
+            # db = gradient (scalar slope) for bias
 
             #if dw is positive = then increasing the weight increases error, so the weight should be decreased
             # example of tuple unpacking
@@ -156,31 +174,48 @@ class LinearRegressionScratch:
             # self.weights is a vector ex: [0, 0, 0]
             # dw is a vector ex: [5, -2, 1]
             # learning rate is a scalar ex: [0.01]
-            # operates on all features simulatenously
+            # operates on all features simulatenously by multiplying the whole vectors
 
             self.weights = self.weights - self.learning_rate * dw
             self.bias = self.bias - self.learning_rate * db
             
+            # calculate MSE (cost) and save it
+            # MSE acts as a score for how well the model adjusted by the new weights
             cost = self._compute_cost(X_normalized, y, self.weights, self.bias)
             self.cost_history.append(cost)
             
+            #every 100 loops/steps the model prints out its current cost to see if its getting smaller
             if (i + 1) % 100 == 0:
                 print(f"Iteration {i + 1}/{self.n_iterations}, Cost: {cost:.6f}")
         
+        #self is the trained object
         return self
     
+    # this is using the model AFTER training is done
+    # setting fit to false because now we are TESTING not training
     def predict(self, X):
         X = np.array(X)
         X_normalized = self._normalize_features(X, fit=False)
+        # y = mx+b
+        # np.dot(X_normalized, self.weights) = mx
+        # self.bias = b
         return np.dot(X_normalized, self.weights) + self.bias
     
+
+    # calculates R^2 the coefficient of determination
+    # 
     def score(self, X, y):
         y = np.array(y)
+        # make predictions on the X test data
         predictions = self.predict(X)
         
+        # ss_res is residual sum of squares (sum of errors squared), how bad is the model
         ss_res = np.sum((y - predictions) ** 2)
+        # ss_tot is total sum of squares 
         ss_tot = np.sum((y - np.mean(y)) ** 2)
         
+        # if the predictions are perfect, ss_res should be 0 and 1 -0 will be 1, which is a perfect score
+        # 1.0 is a perfect score
         return 1 - (ss_res / ss_tot)
 
 
@@ -188,14 +223,25 @@ def demonstrate_gradient_descent():
     print("\n=== Gradient Descent Demonstration ===")
     print("Finding minimum of f(x) = x² using gradient descent")
     print("Derivative: f'(x) = 2x")
+    # derivative : 
+        # tells steepness of of slope
+        # tells direction (positive = uphill to right, or negative = uphill to left)
     
+    # random guess
     x = 10.0
+    # step size
     learning_rate = 0.1
     
     print(f"\nStarting at x = {x}")
     
     for i in range(10):
+        # gradient is 2 * x from previous loop
         gradient = 2 * x
+        # update x, x = current x - (learning rate * gradient) 
+
+        # loop 1 x = 8
+        # loop 2 x = 6.4
+        # loop 3 x = 5.12
         x = x - learning_rate * gradient
         print(f"Step {i + 1}: x = {x:.6f}, f(x) = {x**2:.6f}")
     
