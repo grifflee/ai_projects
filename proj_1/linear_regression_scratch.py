@@ -20,6 +20,28 @@
     # ex price = (mileage * weight) + (age * weight) + base price(bias)
 
     # Gradient descent
+        # self.weights is the position of your fingers on the sliders. 
+        # dw (the gradient) is the instruction telling each finger which way to move.
+        # the bowl idea
+        # height on the bowl represents current weights
+        # height represents error (cost)
+            # high up = high error (model guessing poorly)
+            # bottom of the bowl/valley = low error (model guessing well)
+
+        # dw - the gradient for weights, the goal is to get to the bottom of the valley
+       # calculate the gradient (dw) for each weight separately but simulatenously in each re-loop 
+        # gradient = the slope of the ground under your current feet position
+        # positive means bad logic
+            # if the ground is sloping UP in front of your feet pos, if you move forward you are increasing weight, going up hill, and increasing error
+                # go backward (decrease weight) to go down the slope which is weight = weight - (positive number)
+            
+            # if the ground is sloping down in front of feet post
+                # go forward (increase weight) to go down the slope and reduce error
+                # weight = weight - negative number
+        # if a feature contributed a lot to the prediction, it gets more of the blame for the error
+        # multiple weights adjusted per loop because a blame score (gradient) for every single feature FOUND BY: error * feature value then summing
+        # error is tested by formula: prediction - actual. when the different is low, the gradient is low, and weights start to move less
+        # each reloop should be getting closer to accurate weights
 
 import numpy as np
 
@@ -63,15 +85,31 @@ class LinearRegressionScratch:
         #returns the z score calculation
         return (X - self._mean) / self._std
         
+    #calculates the (MSE) mean squared error
+    # "how bad are the current weights?"
     def _compute_cost(self, X, y, weights, bias):
+        # number of training examples (n) in data set
         m = len(y)
+        # X (matrix of FEATURES) * weights (vector of knobs) + bias (base price)
+        # predictions is an array of numbers representing a guess for every n
         predictions = np.dot(X, weights) + bias
+        # cost formula
+        # predictions - y: difference error for each n (every house in data set)
+        # **2: squares each error
+            # makes all errors positive, and punishes huge errors more
+        # np.sum() adds up all squared errors into one final number
+        # (1/(2*m)) : calculates the overall average
         cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2)
+        # the 'cost' is a single scalar number representing the RATING OF BADNESS for model
+        # smaller cost = better model
         return cost
     
+    # error calculation
     def _compute_gradients(self, X, y, weights, bias):
         m = len(y)
+        # predictions : what the model thought the "price" was 
         predictions = np.dot(X, weights) + bias
+        # predictions = guess, y = the actual, error = the difference
         errors = predictions - y
         
         dw = (1 / m) * np.dot(X.T, errors)
@@ -105,7 +143,7 @@ class LinearRegressionScratch:
 
             # inside the learning loop the direction to move has to be figured out
             # pass in current weights and bias to the _compute_gradients function
-            # dw = gradient(slope) for weights
+            # dw = gradient (slope) for weights, calculated by multiplying features by errors
             # db = gradient (slope) for bias
 
             #if dw is positive = then increasing the weight increases error, so the weight should be decreased
