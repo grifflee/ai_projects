@@ -2,11 +2,24 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import ssl
+import certifi
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 
 from linear_regression_scratch import LinearRegressionScratch
 from linear_regression_sklearn import LinearRegressionSklearn, evaluate_model
+
+# Fix SSL certificate verification issue on macOS
+# Configure SSL to use certifi's certificate bundle for HTTPS connections
+def create_ssl_context():
+    return ssl.create_default_context(cafile=certifi.where())
+
+#ssl._create_default_https_context is a python internal variable
+# called whenever python executes an attept to make an https connection
+# this line means that whenever an SSL context is used for https, use the one I created manually
+# "Every time Python tries to connect to an HTTPS website, use the certificates from the certifi package to verify it."
+ssl._create_default_https_context = create_ssl_context
 
 
 def load_and_explore_data():

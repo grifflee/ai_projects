@@ -1,24 +1,35 @@
 #this is the easy way to do linear regression
-
-
+# imports prebuilt linear regression class to solve for weights
 from sklearn.linear_model import LinearRegression
+
+# import pre-built normalization function (z = (x-mu)/stddev)
 from sklearn.preprocessing import StandardScaler
+
+# import functions like sum of squared errors, r^2
 from sklearn.metrics import mean_squared_error, r2_score
+
+# numpy library for arrays and matrix multiplication
 import numpy as np
 
 
 class LinearRegressionSklearn:
     
     def __init__(self):
+        # built in solver from sklearn
         self.model = LinearRegression()
+        # sk learn version of normalization
         self.scaler = StandardScaler()
         
+
     def fit(self, X, y):
         X = np.array(X)
         y = np.array(y)
         
+        # calculate and save the mean/std from this data
+        # transform - apply the math to this data
         X_scaled = self.scaler.fit_transform(X)
         
+        #
         self.model.fit(X_scaled, y)
         
         return self
