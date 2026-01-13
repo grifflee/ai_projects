@@ -1,0 +1,143 @@
+# Python Syntax Mastery Course Overview
+
+> Goal: Build muscle memory for Python fundamentals to excel at LeetCode, interviews, and personal projects.
+
+================================================================================
+COURSE STRUCTURE
+================================================================================
+
+This course is divided into 20 progressive chunks (max 20 lines each). 
+Each chunk introduces core syntax you'll use constantly.
+
+
+================================================================================
+PART 1: CORE FUNDAMENTALS (Chunks 1-6)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+1     | Variables & Data Types   | int, float, str, bool, type conversion
+2     | String Operations        | Slicing, f-strings, split, join, strip
+3     | Operators & Comparisons  | Arithmetic, logical (and, or, not), comparison
+4     | Conditionals             | if, elif, else, ternary expressions
+5     | Loops: for               | range(), iterating sequences, enumerate()
+6     | Loops: while             | break, continue, else clause
+
+
+================================================================================
+PART 2: DATA STRUCTURES (Chunks 7-12)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+7     | Lists I                  | Creation, indexing, slicing, basic methods
+8     | Lists II                 | append, pop, insert, remove, comprehensions
+9     | Tuples                   | Immutability, packing/unpacking, use cases
+10    | Dictionaries I           | Creation, accessing, adding, .get() method
+11    | Dictionaries II          | Iteration, .keys(), .values(), .items()
+12    | Sets                     | Creation, add, remove, union, intersection
+
+
+================================================================================
+PART 3: FUNCTIONS & SCOPE (Chunks 13-15)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+13    | Defining Functions       | def, parameters, return values
+14    | Function Arguments       | Default values, *args, **kwargs
+15    | Lambda & Scope           | Anonymous functions, global, nonlocal
+
+
+================================================================================
+PART 4: INTERVIEW ESSENTIALS (Chunks 16-20)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+16    | List Comprehensions      | Nested comprehensions, conditionals
+17    | Built-in Functions       | map, filter, zip, sorted, reversed
+18    | Error Handling           | try, except, finally, raising exceptions
+19    | Classes Basics           | class, __init__, methods, self
+20    | Common Patterns          | Two pointers, sliding window, frequency counting
+
+
+================================================================================
+PART 5: FILE I/O & MODULES (Chunks 21-25)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+21    | Reading Files            | open(), read(), readlines(), with statement
+22    | Writing Files            | write(), writelines(), append mode
+23    | Working with Paths       | os.path, pathlib, checking existence
+24    | Importing Modules        | import, from...import, aliasing, __name__
+25    | Creating Modules         | Organizing code, packages, __init__.py
+
+
+================================================================================
+PART 6: OBJECT-ORIENTED PROGRAMMING (Chunks 26-30)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+26    | Classes Deep Dive        | Attributes, instance vs class variables
+27    | Inheritance              | super(), method overriding, parent classes
+28    | Magic Methods I          | __str__, __repr__, __len__, __eq__
+29    | Magic Methods II         | __add__, __lt__, __getitem__, __iter__
+30    | Decorators Intro         | @property, @staticmethod, @classmethod
+
+
+================================================================================
+PART 7: ALGORITHM BUILDING BLOCKS (Chunks 31-35)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+31    | Recursion Basics         | Base case, recursive case, call stack
+32    | Sorting Algorithms       | bubble, selection, merge, sorted() key
+33    | Searching                | Linear search, binary search, bisect module
+34    | Stack & Queue            | Using lists as stacks, collections.deque
+35    | Linked Lists             | Node class, traversal, insert/delete
+
+
+================================================================================
+PART 8: ADVANCED INTERVIEW PATTERNS (Chunks 36-40)
+================================================================================
+
+Chunk | Topic                    | Key Concepts
+------|--------------------------|---------------------------------------------
+36    | Hash Maps Patterns       | Frequency count, grouping, caching
+37    | Two Pointers Advanced    | Fast/slow, left/right, meeting point
+38    | Sliding Window           | Fixed size, variable size, optimization
+39    | Tree Traversals          | BFS, DFS, preorder, inorder, postorder
+40    | Graph Basics             | Adjacency list, BFS/DFS on graphs
+
+
+================================================================================
+HOW TO USE THIS COURSE
+================================================================================
+
+1. READ each chunk carefully - understand every line
+2. TYPE the code yourself (don't copy-paste)
+3. MODIFY the examples and predict the output
+4. PRACTICE related LeetCode easy problems after each section
+
+
+================================================================================
+LEETCODE PROBLEM ALIGNMENT
+================================================================================
+
+Chunk       | Suggested Problems
+------------|--------------------------------------------------
+5-6 (Loops) | Two Sum, Fizz Buzz
+7-8 (Lists) | Remove Duplicates, Merge Sorted Array
+10-11 (Dict)| Valid Anagram, Two Sum (optimal)
+12 (Sets)   | Contains Duplicate, Intersection of Two Arrays
+16-17 (Adv) | Group Anagrams, Longest Substring
+
+
+================================================================================
+TIP: Focus on TYPING the code rather than reading. 
+     Muscle memory comes from repetition, not observation.
+================================================================================
